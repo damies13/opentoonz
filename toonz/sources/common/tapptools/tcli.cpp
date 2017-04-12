@@ -4,9 +4,6 @@
 #include "tconvert.h"
 #include <ctype.h>
 
-#include "tversion.h"
-using namespace TVER;
-
 using namespace std;
 using namespace TCli;
 
@@ -19,17 +16,11 @@ namespace {
 
 //---------------------------------------------------------
 
-void printToonzRelease(ostream &out) {
-  TVER::ToonzVersion tver;
-  out << tver.getAppVersionInfo("") << endl;
-}
+void printToonzRelease(ostream &out) { out << "Toonz 7.1" << endl; }
 
 //---------------------------------------------------------
 
-void printLibRelease(ostream &out) {
-  TVER::ToonzVersion tver;
-  out << tver.getAppVersionInfo("") << " - " __DATE__ << endl; 
-}
+void printLibRelease(ostream &out) { out << "Tnzcore 1.0 - " __DATE__ << endl; }
 //---------------------------------------------------------
 
 }  // namespace
@@ -59,7 +50,6 @@ static SpecialUsageElement bra("[");
 static SpecialUsageElement ket("]");
 static Switcher help("-help", "Print this help page");
 static Switcher release("-release", "Print the current Toonz version");
-static Switcher version("-version", "Print the current Toonz version");
 static Switcher libRelease("-librelease", "");
 // hidden: print the lib version
 
@@ -339,7 +329,6 @@ UsageImp::UsageImp(string progName)
 void UsageImp::addStandardUsages() {
   add(help);
   add(release);
-  add(version);
   add(libRelease);
 }
 
@@ -711,7 +700,7 @@ bool Usage::parse(int argc, char *argv[], std::ostream &err) {
       print(err);
       return false;
     }
-    if (release || version) {
+    if (release) {
       printToonzRelease(err);
       return false;
     }
