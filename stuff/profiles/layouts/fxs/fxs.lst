@@ -20,7 +20,6 @@
     STD_inoRadialBlurFx
     STD_rotationalBlurFx
     STD_inoSpinBlurFx
-    STD_iwa_BokehFx
   </Blur>
   <Distort>
     STD_freeDistortFx
