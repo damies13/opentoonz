@@ -66,6 +66,7 @@ TFilePath getGlobalRoot() {
 #else
 
   // Leggo la globalRoot da File txt
+<<<<<<< HEAD
 #  ifdef MACOSX
   // If MACOSX, change to MACOSX path
   std::string unixpath = "./" + tver.getAppName() + "_" + tver.getAppVersionString() + ".app/Contents/Resources/configfarmroot.txt";
@@ -73,8 +74,12 @@ TFilePath getGlobalRoot() {
   // set path to something suitable for most linux (Unix?) systems
   std::string unixpath = "/etc/" + tver.getAppName() + "/opentoonz.conf";
 #  endif
+=======
+  std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
+>>>>>>> parent of 7ebf7e7... Merge branch 'master' into Issue-#1130-OSX-tfarm-binaries
   TFilePath name(unixpath);
-  Tifstream is(name);
+  Tifstream is(
+      TFilePath(TSystem::getSystemValue(name).toStdString()));
   if (is) {
     char line[1024];
     is.getline(line, 80);
@@ -108,6 +113,7 @@ TFilePath getLocalRoot() {
           TFilePath("toonzfarm");
 #else
   // Leggo la localRoot da File txt
+<<<<<<< HEAD
 #  ifdef MACOSX
   // If MACOSX, change to MACOSX path
   std::string unixpath = "./" + tver.getAppName() + "_" + tver.getAppVersionString() + ".app/Contents/Resources/configfarmroot.txt";
@@ -115,8 +121,12 @@ TFilePath getLocalRoot() {
   // set path to something suitable for most linux (Unix?) systems
   std::string unixpath = "/etc/" + tver.getAppName() + "/opentoonz.conf";
 #  endif
+=======
+  std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
+>>>>>>> parent of 7ebf7e7... Merge branch 'master' into Issue-#1130-OSX-tfarm-binaries
   TFilePath name(unixpath);
-  Tifstream is(name);
+  Tifstream is(
+      TFilePath(TSystem::getSystemValue(name).toStdString()));
   if (is) {
     char line[1024];
     is.getline(line, 80);
