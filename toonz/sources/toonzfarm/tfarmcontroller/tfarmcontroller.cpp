@@ -68,6 +68,7 @@ TFilePath getGlobalRoot() {
 
   // Leggo la globalRoot da File txt
 <<<<<<< HEAD
+<<<<<<< HEAD
 #  ifdef MACOSX
   // If MACOSX, change to MACOSX path
   std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
@@ -75,6 +76,9 @@ TFilePath getGlobalRoot() {
   // set path to something suitable for most linux (Unix?) systems
   std::string unixpath = "/etc/" + std::string(applicationName) + "/opentoonz.conf";
 #  endif
+=======
+  std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
+>>>>>>> parent of 7ebf7e7... Merge branch 'master' into Issue-#1130-OSX-tfarm-binaries
 =======
   std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
 >>>>>>> parent of 7ebf7e7... Merge branch 'master' into Issue-#1130-OSX-tfarm-binaries
@@ -114,6 +118,7 @@ TFilePath getLocalRoot() {
 #else
   // Leggo la localRoot da File txt
 <<<<<<< HEAD
+<<<<<<< HEAD
 #  ifdef MACOSX
   // If MACOSX, change to MACOSX path
   std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
@@ -121,6 +126,9 @@ TFilePath getLocalRoot() {
   // set path to something suitable for most linux (Unix?) systems
   std::string unixpath = "/etc/" + std::string(applicationName) + "/opentoonz.conf";
 #  endif
+=======
+  std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
+>>>>>>> parent of 7ebf7e7... Merge branch 'master' into Issue-#1130-OSX-tfarm-binaries
 =======
   std::string unixpath = "./" + std::string(applicationName) + "_" + std::string(applicationVersion) + ".app/Contents/Resources/configfarmroot.txt";
 >>>>>>> parent of 7ebf7e7... Merge branch 'master' into Issue-#1130-OSX-tfarm-binaries
