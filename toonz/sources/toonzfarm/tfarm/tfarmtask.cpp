@@ -358,8 +358,10 @@ QString getExeName(bool isComposer) {
 
 #ifdef _WIN32
   return name + ".exe ";
+#elif MACOSX
+  return "\"./" + tver.getAppName() + "_" + tver.getAppVersionString() + ".app/Contents/MacOS/" + name + "\" ";
 #else
-  return "\"./Toonz 7.1.app/Contents/MacOS/" + name + "\" ";
+  return name;
 #endif
 }
 
