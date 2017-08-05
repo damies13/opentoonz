@@ -6,6 +6,9 @@
 
 #include "tenv.h"
 
+#include <string>
+#include <sstream>
+
 using namespace std;
 using namespace TCli;
 
@@ -19,13 +22,13 @@ namespace {
 //---------------------------------------------------------
 
 void printToonzRelease(ostream &out) {
-  out << TEnv::getAppVersionInfo("") << endl;
+  out << TEnv::getApplicationFullName() << endl;
 }
 
 //---------------------------------------------------------
 
 void printLibRelease(ostream &out) {
-  out << TEnv::getAppVersionInfo("") << " - " __DATE__ << endl;
+  out << TEnv::getApplicationFullName() << " - " << __DATE__ << endl;
 }
 //---------------------------------------------------------
 

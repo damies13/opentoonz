@@ -110,6 +110,7 @@ DVAPI std::string getApplicationName();
 DVAPI std::string getApplicationVersion();
 DVAPI std::string getApplicationVersionWithoutRevision();
 DVAPI std::string getApplicationRevision();
+DVAPI std::string getAppVersionInfo(std::string msg);
 
 // es.: TEnv::setModuleFullName("Toonz 5.0.1 Harlequin");
 // (default: "<applicationName> <applicationVersion>")
