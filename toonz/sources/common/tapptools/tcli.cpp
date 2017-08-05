@@ -4,8 +4,7 @@
 #include "tconvert.h"
 #include <ctype.h>
 
-#include "tversion.h"
-using namespace TVER;
+#include "tenv.h"
 
 using namespace std;
 using namespace TCli;
@@ -20,15 +19,13 @@ namespace {
 //---------------------------------------------------------
 
 void printToonzRelease(ostream &out) {
-  TVER::ToonzVersion tver;
-  out << tver.getAppVersionInfo("") << endl;
+  out << TEnv::getAppVersionInfo("") << endl;
 }
 
 //---------------------------------------------------------
 
 void printLibRelease(ostream &out) {
-  TVER::ToonzVersion tver;
-  out << tver.getAppVersionInfo("") << " - " __DATE__ << endl;
+  out << TEnv::getAppVersionInfo("") << " - " __DATE__ << endl;
 }
 //---------------------------------------------------------
 

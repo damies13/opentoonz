@@ -67,6 +67,8 @@ $ mkdir build
 $ cd build
   CMAKE_PREFIX_PATH=~/Qt5.6.0/5.6/clang_64 cmake ../sources
 $ make
+or if you want logs use this instead: 
+$ make -k 2>&1 | tee build.log
 ```
 
 Please be patient as the install will take a while.
