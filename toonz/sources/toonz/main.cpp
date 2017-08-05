@@ -69,6 +69,9 @@
 #include "tipc.h"
 #endif
 
+#include <string>
+#include <sstream>
+
 // Qt includes
 #include <QApplication>
 #include <QAbstractEventDispatcher>
@@ -90,10 +93,14 @@ const char *applicationFullName = "LineTest 6.4 Beta";
 const char *rootVarName         = "LINETESTROOT";
 const char *systemVarPrefix     = "LINETEST";
 #else
-const char *applicationName     = "OpenToonz";
-const char *applicationVersion  = "1.1";
-const char *applicationRevision = "3";
-const char *dllRelativePath     = "./toonz6.app/Contents/Frameworks";
+const char *applicationName = TEnv::getApplicationName().c_str();
+const char *applicationVersion =
+    TEnv::getApplicationVersionWithoutRevision().c_str();
+const char *applicationRevision = TEnv::getApplicationRevision().c_str();
+const char *dllRelativePath =
+    ("./" + TEnv::getApplicationName() + "_" +
+     TEnv::getApplicationVersionWithoutRevision() + "/Contents/Frameworks")
+        .c_str();
 #endif
 
 #ifdef _WIN32
@@ -105,9 +112,12 @@ TEnv::IntVar EnvSoftwareCurrentFontSize("SoftwareCurrentFontSize", 12);
 TEnv::StringVar EnvSoftwareCurrentFontWeight("SoftwareCurrentFontWeightIsBold",
                                              "Yes");
 
-const char *applicationFullName = "OpenToonz 1.1.3";
-const char *rootVarName         = "TOONZROOT";
-const char *systemVarPrefix     = "TOONZ";
+// const char *applicationFullName = "OpenToonz 1.1.3";
+// const char *rootVarName         = "TOONZROOT";
+// const char *systemVarPrefix     = "TOONZ";
+const char *applicationFullName = TEnv::getApplicationFullName().c_str();
+const char *rootVarName         = TEnv::getRootVarName().c_str();
+const char *systemVarPrefix     = TEnv::getSystemVarPrefix().c_str();
 
 #ifdef MACOSX
 #include "tthread.h"
@@ -158,11 +168,16 @@ DV_IMPORT_API void initColorFx();
     la stuffDir, controlla se la directory di outputs esiste (e provvede a
     crearla in caso contrario) verifica inoltre che stuffDir esista.
 */
+//! Initialize Toonz's Environment
+/*! Specifically, set the projectRoot and
+     The stuffDir, checks whether the outputs directory exists (and provides a
+     Create it otherwise) also verifies that stuffDir exists.
+*/
 static void initToonzEnv() {
   StudioPalette::enable(true);
 
-  TEnv::setApplication(applicationName, applicationVersion,
-                       applicationRevision);
+  // TEnv::setApplication(applicationName, applicationVersion,
+  //                      applicationRevision);
   TEnv::setRootVarName(rootVarName);
   TEnv::setSystemVarPrefix(systemVarPrefix);
   TEnv::setDllRelativeDir(TFilePath(dllRelativePath));
@@ -231,8 +246,8 @@ project->setUseScenePath(TProject::Extras, false);
   // Imposto la rootDir per ImageCache
 
   /*-- TOONZCACHEROOTの設定  --*/
-  TFilePath cacheDir               = ToonzFolder::getCacheRootFolder();
-  if (cacheDir.isEmpty()) cacheDir = TEnv::getStuffDir() + "cache";
+  TFilePath cacheDir = ToonzFolder::getCacheRootFolder();
+  if (cacheDir.isEmpty()) cacheDir= TEnv::getStuffDir() + "cache";
   TImageCache::instance()->setRootDir(cacheDir);
 }
 

@@ -40,6 +40,7 @@ class EnvGlobals {  // singleton
   std::string m_applicationName;
   std::string m_applicationVersion;
   std::string m_applicationVersionWithoutRevision;
+  std::string m_applicationRevision;
   std::string m_applicationFullName;
   std::string m_moduleName;
   std::string m_rootVarName;
@@ -144,6 +145,7 @@ public:
                       std::string applicationVersion, std::string revision) {
     m_applicationName                   = applicationName;
     m_applicationVersionWithoutRevision = applicationVersion;
+    m_applicationRevision               = revision;
     if (!revision.empty()) {
       m_applicationVersion =
           m_applicationVersionWithoutRevision + "." + revision;
@@ -165,6 +167,13 @@ public:
   std::string getApplicationVersion() { return m_applicationVersion; }
   std::string getApplicationVersionWithoutRevision() {
     return m_applicationVersionWithoutRevision;
+  }
+  std::string getApplicationRevision() { return m_applicationRevision; }
+  std::string getAppVersionInfo(std::string msg) {
+    std::string appinfo = m_applicationName;
+    appinfo += " " + msg + " v";
+    appinfo += m_applicationVersion;
+    return appinfo;
   }
 
   TFilePath getEnvFile() { return m_envFile; }
@@ -385,8 +394,8 @@ Variable::Variable(std::string name)
 Variable::Variable(std::string name, std::string defaultValue)
     : m_imp(VariableSet::instance()->getImp(name)) {
   // assert(!m_imp->m_defaultDefined);
-  m_imp->m_defaultDefined              = true;
-  if (!m_imp->m_loaded) m_imp->m_value = defaultValue;
+  m_imp->m_defaultDefined = true;
+  if (!m_imp->m_loaded) m_imp->m_value= defaultValue;
 }
 
 //-------------------------------------------------------------------
@@ -509,7 +518,7 @@ TFilePath TEnv::getStuffDir() {
 
 TFilePath TEnv::getConfigDir() {
   TFilePath configDir = getSystemVarPathValue(getSystemVarPrefix() + "CONFIG");
-  if (configDir == TFilePath()) configDir = getStuffDir() + "config";
+  if (configDir == TFilePath()) configDir= getStuffDir() + "config";
   return configDir;
 }
 

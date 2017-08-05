@@ -23,6 +23,21 @@
 namespace TEnv {
 
 //-------------------------------------------------------
+// NOTA BENE: bisogna chiamare setApplication() il prima possibile
+// questa operazione inizializza il registry root (su Windows) e definisce il
+// file dove
+// vengono lette e scritte le variabili di environment
+//
+// NOTE: you must call setApplication () as early as possible
+// This initializes the registry root (on Windows) and defines the
+// file where
+// the environment variables are read and written
+//
+// es.:  TEnv::setApplication("Toonz","5.0");
+//
+DVAPI void setApplication(std::string applicationName, std::string version,
+                          std::string revision = std::string());
+//-------------------------------------------------------
 
 class DVAPI Variable {
 public:
@@ -38,6 +53,15 @@ public:
   std::string getValue() const;
 
   void assignValue(std::string str);
+
+private:
+  const char *applicationName     = "OpenToonz";
+  const float applicationVersion  = 1.1;
+  const float applicationRevision = 3;
+  Variable() {
+    TEnv::setApplication(applicationName, std::to_string(applicationVersion),
+                         std::to_string(applicationRevision));
+  }
 };
 
 class DVAPI IntVar final : public Variable {
@@ -82,18 +106,10 @@ public:
 
 //-------------------------------------------------------
 
-// NOTA BENE: bisogna chiamare setApplication() il prima possibile
-// questa operazione inizializza il registry root (su Windows) e definisce il
-// file dove
-// vengono lette e scritte le variabili di environment
-//
-// es.:  TEnv::setApplication("Toonz","5.0");
-//
-DVAPI void setApplication(std::string applicationName, std::string version,
-                          std::string revision = std::string());
-
 DVAPI std::string getApplicationName();
 DVAPI std::string getApplicationVersion();
+DVAPI std::string getApplicationVersionWithoutRevision();
+DVAPI std::string getApplicationRevision();
 
 // es.: TEnv::setModuleFullName("Toonz 5.0.1 Harlequin");
 // (default: "<applicationName> <applicationVersion>")
