@@ -22,6 +22,7 @@ TOfflineGL::Imp *MacOfflineGenerator1(const TDimension &dim) {
 }
 #endif
 
+#include <string>
 #include <map>
 #include <sstream>
 
@@ -34,6 +35,9 @@ using namespace TEnv;
 //=========================================================
 
 namespace {
+// const char *applicationName     = "OpenToonz";
+// const float applicationVersion  = 1.1;
+// const float applicationRevision = 4;
 
 class EnvGlobals {  // singleton
 
@@ -43,14 +47,14 @@ class EnvGlobals {  // singleton
   std::string m_applicationRevision;
   std::string m_applicationFullName;
   std::string m_moduleName;
-  std::string m_rootVarName;
-  std::string m_systemVarPrefix;
+  std::string m_rootVarName     = "TOONZROOT";
+  std::string m_systemVarPrefix = "TOONZ";
   TFilePath m_registryRoot;
   TFilePath m_envFile;
   TFilePath *m_stuffDir;
   TFilePath *m_dllRelativeDir;
 
-  EnvGlobals() : m_stuffDir(0) {}
+  EnvGlobals() : m_stuffDir(0) { setApplication("OpenToonz", "1.1", "4"); }
 
 public:
   ~EnvGlobals() { delete m_stuffDir; }
@@ -154,21 +158,25 @@ public:
     }
     m_applicationFullName = m_applicationName + " " + m_applicationVersion;
     m_moduleName          = m_applicationName;
-    m_rootVarName         = toUpper(m_applicationName) + "ROOT";
+// m_rootVarName         = toUpper(m_applicationName) + "ROOT";
 #ifdef _WIN32
     m_registryRoot = TFilePath("SOFTWARE\\OpenToonz\\") + m_applicationName +
                      applicationVersion;
 #endif
-    m_systemVarPrefix = m_applicationName;
+    // m_systemVarPrefix = m_applicationName;
     updateEnvFile();
   }
 
   std::string getApplicationName() { return m_applicationName; }
+
   std::string getApplicationVersion() { return m_applicationVersion; }
+
   std::string getApplicationVersionWithoutRevision() {
     return m_applicationVersionWithoutRevision;
   }
+
   std::string getApplicationRevision() { return m_applicationRevision; }
+
   std::string getAppVersionInfo(std::string msg) {
     std::string appinfo = m_applicationName;
     appinfo += " " + msg + " v";
@@ -317,8 +325,8 @@ void VariableSet::load() {
     char *s = buffer;
     while (*s == ' ') s++;
     char *t = s;
-    while ('a' <= *s && *s <= 'z' || 'A' <= *s && *s <= 'Z' ||
-           '0' <= *s && *s <= '9' || *s == '_')
+    while (('a' <= *s && *s <= 'z') || ('A' <= *s && *s <= 'Z') ||
+           ('0' <= *s && *s <= '9') || *s == '_')
       s++;
     std::string name(t, s - t);
     if (name.size() == 0) continue;
@@ -446,8 +454,20 @@ std::string TEnv::getApplicationVersion() {
   return EnvGlobals::instance()->getApplicationVersion();
 }
 
+std::string TEnv::getApplicationVersionWithoutRevision() {
+  return EnvGlobals::instance()->getApplicationVersionWithoutRevision();
+}
+
+std::string TEnv::getApplicationRevision() {
+  return EnvGlobals::instance()->getApplicationRevision();
+}
+
 void TEnv::setApplicationFullName(std::string applicationFullName) {
   EnvGlobals::instance()->setApplicationFullName(applicationFullName);
+}
+
+std::string TEnv::getAppVersionInfo(std::string msg) {
+  return EnvGlobals::instance()->getAppVersionInfo(msg);
 }
 
 std::string TEnv::getApplicationFullName() {

@@ -7,6 +7,10 @@
 #include "tgeometry.h"
 #include "tfilepath.h"
 
+#include <string>
+#include <map>
+#include <sstream>
+
 //===================================================================
 
 #undef DVAPI
@@ -54,14 +58,14 @@ public:
 
   void assignValue(std::string str);
 
-private:
-  const char *applicationName     = "OpenToonz";
-  const float applicationVersion  = 1.1;
-  const float applicationRevision = 3;
-  Variable() {
-    TEnv::setApplication(applicationName, std::to_string(applicationVersion),
-                         std::to_string(applicationRevision));
-  }
+  // private:
+  // const char *applicationName     = "OpenToonz";
+  // const float applicationVersion  = 1.1;
+  // const float applicationRevision = 4;
+  // Variable() {
+  //   TEnv::setApplication(applicationName, std::to_string(applicationVersion),
+  //                        std::to_string(applicationRevision));
+  // }
 };
 
 class DVAPI IntVar final : public Variable {
@@ -106,10 +110,10 @@ public:
 
 //-------------------------------------------------------
 
-DVAPI std::string getApplicationName();
-DVAPI std::string getApplicationVersion();
 DVAPI std::string getApplicationVersionWithoutRevision();
 DVAPI std::string getApplicationRevision();
+DVAPI std::string getApplicationName();
+DVAPI std::string getApplicationVersion();
 DVAPI std::string getAppVersionInfo(std::string msg);
 
 // es.: TEnv::setModuleFullName("Toonz 5.0.1 Harlequin");

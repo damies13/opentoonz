@@ -93,10 +93,10 @@ const char *applicationFullName = "LineTest 6.4 Beta";
 const char *rootVarName         = "LINETESTROOT";
 const char *systemVarPrefix     = "LINETEST";
 #else
-const char *applicationName = TEnv::getApplicationName().c_str();
+const char *applicationName = (TEnv::getApplicationName()).c_str();
 const char *applicationVersion =
-    TEnv::getApplicationVersionWithoutRevision().c_str();
-const char *applicationRevision = TEnv::getApplicationRevision().c_str();
+    (TEnv::getApplicationVersionWithoutRevision()).c_str();
+const char *applicationRevision = (TEnv::getApplicationRevision()).c_str();
 const char *dllRelativePath =
     ("./" + TEnv::getApplicationName() + "_" +
      TEnv::getApplicationVersionWithoutRevision() + "/Contents/Frameworks")
@@ -115,9 +115,9 @@ TEnv::StringVar EnvSoftwareCurrentFontWeight("SoftwareCurrentFontWeightIsBold",
 // const char *applicationFullName = "OpenToonz 1.1.3";
 // const char *rootVarName         = "TOONZROOT";
 // const char *systemVarPrefix     = "TOONZ";
-const char *applicationFullName = TEnv::getApplicationFullName().c_str();
-const char *rootVarName         = TEnv::getRootVarName().c_str();
-const char *systemVarPrefix     = TEnv::getSystemVarPrefix().c_str();
+const char *applicationFullName = (TEnv::getApplicationFullName()).c_str();
+const char *rootVarName         = (TEnv::getRootVarName()).c_str();
+const char *systemVarPrefix     = (TEnv::getSystemVarPrefix()).c_str();
 
 #ifdef MACOSX
 #include "tthread.h"
