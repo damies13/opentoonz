@@ -23,7 +23,7 @@
 With homebrew, you can install them with following command.
 
 ```
-$ brew install glew lz4 libjpeg libpng lzo pkg-config libusb
+$ brew install glew lz4 libjpeg libpng lzo pkg-config libusb libmypaint
 ```
 
 Or, you should build and install them manually.

@@ -18,7 +18,7 @@
 ### brew で必要なパッケージをインストール
 
 ```
-$ brew install glew lz4 libjpeg libpng lzo pkg-config
+$ brew install glew lz4 libjpeg libpng lzo pkg-config libmypaint
 ```
 
 ### リポジトリを clone
