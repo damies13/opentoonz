@@ -251,6 +251,7 @@ private:
 };
 
 // non posso usare lo smartpointer di tnzcore perche' non linka su .NET
+// I can not use tnzcore smartpointer because it does not link to .NET
 
 class FarmControllerProxyP {
   FarmControllerProxy *m_proxy;
