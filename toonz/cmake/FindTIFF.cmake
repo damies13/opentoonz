@@ -10,15 +10,9 @@ find_path(
 # if mono or another framework with a tif library
 # is installed, ignore it.
 if(BUILD_ENV_APPLE)
-<<<<<<< HEAD
-   NO_DEFAULT_PATH
-   NO_CMAKE_ENVIRONMENTPATH
-   NO_CMAKE_PATH
-=======
     NO_DEFAULT_PATH
     NO_CMAKE_ENVIRONMENTPATH
     NO_CMAKE_PATH
->>>>>>> opentoonz/master
 endif()
 )
 

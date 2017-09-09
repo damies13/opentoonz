@@ -23,11 +23,7 @@
 With homebrew, you can install them with following command.
 
 ```
-<<<<<<< HEAD
-$ brew install glew lz4 libjpeg libpng lzo pkg-config libusb libmypaint
-=======
 $ brew install glew lz4 libjpeg libpng lzo pkg-config libusb cmake git-lfs libmypaint
->>>>>>> opentoonz/master
 ```
 
 Or, you should build and install them manually.
@@ -65,7 +61,7 @@ $ mv ~/Downloads/boost_1_55_0.tar.bz2 .
 $ tar xjvf boost_1_55_0.tar.bz2
 ```
 
-### 5. Update the path to your Qt 5.6 install in opentoonz/toonz/sources/CMakeLists.txt line 160 or 172 
+### 5. Update the path to your Qt 5.6 install in opentoonz/toonz/sources/CMakeLists.txt line 160 or 172
 If using Qt 5.6.2, this is unnecessary.
 
 ### 6. Copy the lzo header folder to the lzo driver directory
@@ -83,7 +79,7 @@ $ mkdir build
 $ cd build
   CMAKE_PREFIX_PATH=~/Qt5.6.2/5.6/clang_64 cmake ../sources
 $ make
-or if you want logs use this instead: 
+or if you want logs use this instead:
 $ make -k 2>&1 | tee build.log
 ```
 
