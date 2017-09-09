@@ -45,25 +45,16 @@ class EnvGlobals {  // singleton
   std::string m_applicationRevision;
   std::string m_applicationFullName;
   std::string m_moduleName;
-<<<<<<< HEAD
   std::string m_rootVarName     = "TOONZROOT";
   std::string m_systemVarPrefix = "TOONZ";
-=======
-  std::string m_rootVarName;
-  std::string m_systemVarPrefix;
   std::string m_workingDirectory;
->>>>>>> opentoonz/master
   TFilePath m_registryRoot;
   TFilePath m_envFile;
   TFilePath *m_stuffDir;
   TFilePath *m_dllRelativeDir;
   bool m_isPortable = false;
 
-<<<<<<< HEAD
   EnvGlobals() : m_stuffDir(0) { setApplication("OpenToonz", "1.1", "4"); }
-=======
-  EnvGlobals() : m_stuffDir(0) { setWorkingDirectory(); }
->>>>>>> opentoonz/master
 
 public:
   ~EnvGlobals() { delete m_stuffDir; }
