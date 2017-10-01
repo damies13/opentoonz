@@ -517,7 +517,7 @@ elseif(BUILD_ENV_UNIXLIKE AND BUILD_TARGET_WIN)
             "$<TARGET_FILE:tfarm>"
         DESTINATION bin
     )
-    
+
     install(
         DIRECTORY
             ${CMAKE_SOURCE_DIR}/../../stuff
